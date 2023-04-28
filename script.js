@@ -50,24 +50,29 @@ numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
         displayValue += button.textContent;
         display.textContent = displayValue;
-        console.log(displayValue.length);
         if(displayValue.length >= 9){
             display.textContent = "Error";
         }
+        firstNumber = displayValue;
     });
     
 });
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        firstNumber = displayValue;
-        displayValue = "";
+        firstNumber = parseInt(displayValue);
+        secondNumber = 0
+        console.log(firstNumber)
         operator = button.textContent;
+        display.textContent = operator
     });
 }
 );
 
 equalsButton.addEventListener("click", () => {
-    secondNumber = displayValue;
-    displayValue = "";
-    display.textContent = operate(operator, firstNumber, secondNumber);
+    secondNumber = ''
+    secondNumber = parseInt(displayValue)
+    display.textContent = ''
+    let sum = operate(operator, firstNumber, secondNumber)
+    display.textContent = sum;
+    console.log(sum)
 });
