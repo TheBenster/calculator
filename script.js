@@ -22,9 +22,9 @@ function operate(operator, a, b) {
         return subtract(a, b);
     } else if (operator === "*") {
         return multiply(a, b);
-    } else if (operator === "/") {
+    } else if (operator === "÷") {
         if(b === 0 ){
-            return "silly goose!"
+            return "nonono!"
         } else{
             return divide(a, b);
         }
