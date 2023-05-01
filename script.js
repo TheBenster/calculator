@@ -23,7 +23,11 @@ function operate(operator, a, b) {
     } else if (operator === "*") {
         return multiply(a, b);
     } else if (operator === "/") {
-        return divide(a, b);
+        if(b === 0 ){
+            return "silly goose!"
+        } else{
+            return divide(a, b);
+        }
     }
 }
 
@@ -45,34 +49,35 @@ clearButton.addEventListener("click", () => {
 
 // if number is clicked, assign to the first number variable
 // if operator is clicked, assign to the operator variable
-
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
+      if (displayValue.length < 9) {
         displayValue += button.textContent;
         display.textContent = displayValue;
-        if(displayValue.length >= 9){
-            display.textContent = "Error";
-        }
-        firstNumber = displayValue;
+      } else {
+        display.textContent = "Error";
+      }
     });
-    
-});
-operatorButtons.forEach((button) => {
+  });
+  
+  operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        firstNumber = parseInt(displayValue);
-        secondNumber = 0
-        console.log(firstNumber)
-        operator = button.textContent;
-        display.textContent = operator
+      firstNumber = displayValue;
+      operator = button.textContent;
+      display.textContent = operator;
+  
+      // Reset displayValue to an empty string
+      displayValue = "";
     });
-}
-);
-
-equalsButton.addEventListener("click", () => {
-    secondNumber = ''
-    secondNumber = parseInt(displayValue)
-    display.textContent = ''
-    let sum = operate(operator, firstNumber, secondNumber)
-    display.textContent = sum;
-    console.log(sum)
-});
+  });
+  
+  equalsButton.addEventListener("click", () => {
+    secondNumber = displayValue;
+  
+    let sum = operate(operator, parseInt(firstNumber), parseInt(secondNumber));
+  
+    // Update displayValue with the result of the operation
+    displayValue = sum.toString();
+  
+    display.textContent = displayValue;
+  });
